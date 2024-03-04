@@ -20,7 +20,8 @@ public class SerImpl implements EmployeeService {
 
     @Override
     public List<Employee> findAll() {
-        return employeeRepository.findAll();
+//        return employeeRepository.findAll(); this is normal findAll method for getting the list of the employees
+        return employeeRepository.findAllByOrderByLastNameAsc();
     }
 
     @Override
