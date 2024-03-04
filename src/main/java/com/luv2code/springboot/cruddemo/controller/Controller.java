@@ -4,10 +4,7 @@ import com.luv2code.springboot.cruddemo.entity.Employee;
 import com.luv2code.springboot.cruddemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,4 +40,17 @@ public class Controller {
         return "redirect:/employees/list"; // this is special syntax for redirecting back to the employee page.
     }
 
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("employeeId") int theID, Model theModel){
+        Employee theEmployee= employeeService.findById(theID); // find the suitable employee with that particular id
+        theModel.addAttribute("employee", theEmployee);
+        return "employees/employee-update-form";
+    }
+
+    @GetMapping("/deleteEmployee")
+    public String deleteEmployee(@RequestParam("employeeId") int theId){
+        System.out.println(theId);
+        employeeService.deleteById(theId);
+        return "redirect:/employees/list";
+    }
 }

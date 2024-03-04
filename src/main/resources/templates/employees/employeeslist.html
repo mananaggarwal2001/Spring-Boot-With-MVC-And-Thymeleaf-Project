@@ -18,6 +18,7 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,10 @@
                 <td class="fw-bolder" th:text="${tempEmployee.firstName}"></td>
                 <td class="fw-bolder" th:text="${tempEmployee.lastName}"></td>
                 <td class="fw-bolder" th:text="${tempEmployee.email}"></td>
+                <td>
+                    <a class="btn btn-primary fw-bold me-4 btn-sm" th:href="@{/employees/showFormForUpdate(employeeId=${tempEmployee.id})}">Update</a>
+                    <a class="btn btn-danger fw-bold btn-sm" onclick="if (!(confirm('Are you Sure want to Delete This Employee ??'))) return false" th:href="@{/employees/deleteEmployee(employeeId=${tempEmployee.id})}">Delete</a>
+                </td>
             </tr>
         </tbody>
     </table>
